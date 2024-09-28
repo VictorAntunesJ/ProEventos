@@ -6,20 +6,19 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EventosComponent } from './eventos/eventos.component';
 import { PalestrantesComponent } from './palestrantes/palestrantes.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { from } from 'rxjs';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    EventosComponent,
-    PalestrantesComponent
-  ],
+  declarations: [AppComponent, EventosComponent, PalestrantesComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
