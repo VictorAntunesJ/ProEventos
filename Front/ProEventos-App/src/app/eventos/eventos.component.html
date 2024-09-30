@@ -1,7 +1,45 @@
-<h1>Eventos de components</h1>
+<head>
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+  />
+</head>
 
-<div *ngFor="let evento of eventos" >
-  <p> <b>Tema:</b> {{evento.tema}}</p>
-  <p>   <b>Local:</b> {{evento.local}}</p>
-  <hr>
-</div>
+<h1>Eventos</h1>
+<hr />
+
+<form action="" class="form-inline">
+  <div class="form-group mb-2">
+    <input type="text" class="form-control mr-2" placeholder="Buscar" />
+    <button class="btn btn-outline-success">Buscar</button>
+  </div>
+</form>
+
+<table class="table table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th>#</th>
+      <th>Image</th>
+      <th>Tema</th>
+      <th>Local</th>
+      <th>Data</th>
+      <th>Qts Pessoa</th>
+      <th>Lote</th>
+      <th>Opçoes</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let evento of eventos">
+      <th>{{ evento.eventoId }}</th>
+      <th>{{ evento.ImageImg }}</th>
+      <th>{{ evento.tema }}</th>
+      <th>{{ evento.local }}</th>
+      <th>{{ evento.dataEvento }}</th>
+      <th>{{ evento.qtdPessoas }}</th>
+      <th>{{ evento.lote }}</th>
+      <th></th>
+      <hr />
+    </tr>
+  </tbody>
+</table>
