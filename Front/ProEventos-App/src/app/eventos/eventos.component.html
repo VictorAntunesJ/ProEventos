@@ -5,8 +5,8 @@
   />
 </head>
 
-<h1>Eventos</h1>
-<hr />
+<h2>Eventos</h2>
+<hr>
 
 <form action="" class="form-inline">
   <div class="form-group mb-2">
@@ -18,8 +18,13 @@
 <table class="table table-striped">
   <thead class="thead-dark">
     <tr>
+      <th>
+        <button type="button" class="btn btn-outline-light btn-sm"
+        (click)="alterarImagem()">
+        {{!exibirImagem ? 'exibir' : 'ocultar'}}
+        </button>
+      </th>
       <th>#</th>
-      <th>Image</th>
       <th>Tema</th>
       <th>Local</th>
       <th>Data</th>
@@ -31,15 +36,17 @@
 
   <tbody *ngIf="eventos && eventos.length">
     <tr *ngFor="let evento of eventos">
-      <td>{{ evento.eventoId }}</td>
       <td>
-        <img
+
+        <img [collapse]="!exibirImagem"
+        [isAnimated]="true"
           src="/assets/{{ evento.imagemUrl }}"
           alt=""
-          [style.width.px]="widthImg"
-          [style.margin.px]="marginImg"
-        />
+          [style.width.px]="larguraImagem"
+          [style.margin.px]="margemImagem"
+        >
       </td>
+      <td>{{ evento.eventoId }}</td>
 
       <td>{{ evento.tema }}</td>
       <td>{{ evento.local }}</td>
@@ -47,7 +54,6 @@
       <td>{{ evento.qtdPessoas }}</td>
       <td>{{ evento.lote }}</td>
       <td></td>
-      <hr />
     </tr>
   </tbody>
   <tfoot *ngIf="!eventos.length">
