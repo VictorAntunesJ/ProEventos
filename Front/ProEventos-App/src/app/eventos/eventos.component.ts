@@ -9,8 +9,8 @@ import { Component, OnInit } from '@angular/core';
 export class EventosComponent implements OnInit {
   public eventos: any = [];
   public eventosFiltrados: any = [];
-  larguraImagem: number = 150;
-  margemImagem: number = 2;
+  larguraImagem: number = 90;
+  margemImagem: number = 1;
   exibirImagem: boolean = true;
   private _filtroLista: string = '';
 

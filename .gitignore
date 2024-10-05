@@ -525,3 +525,25 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+
+*.db
+*.db-shm
+*.db-wal
+package-lock.json
+PROEVENTOS.generated.sln
+.vscode
+.config
+
+
+
+package-lock.json
+
+
+PROEVENTOS.generated.sln
+
+.vscode/
+
+
+.config/
+
