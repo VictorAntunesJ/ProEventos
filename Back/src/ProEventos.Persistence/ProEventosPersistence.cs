@@ -18,27 +18,27 @@ namespace ProEventos.Persistence
         //GERAL
         public void Add<T>(T entity) where T : class
         {
-            throw new NotImplementedException();
+            _context.Add(entity);
         }
 
         public void Update<T>(T entity) where T : class
         {
-            throw new NotImplementedException();
+            _context.Update(entity);
         }
 
         public void Delete<T>(T entity) where T : class
         {
-            throw new NotImplementedException();
+            _context.Remove(entity);
         }
 
-        public void DeleteRanger<T>(T[] entity) where T : class
+        public void DeleteRanger<T>(T[] entityArray) where T : class
         {
-            throw new NotImplementedException();
+            _context.AddRange(entityArray);
         }
 
-         public Task<bool> SaveChangesAsync()
+         public async Task<bool> SaveChangesAsync()
         {
-            throw new NotImplementedException();
+            return(await _context.SaveChangesAsync())> 0;
         }
 
         //EVENTOS
