@@ -13,7 +13,7 @@ namespace ProEventos.Domain
         public string ImagemURL { get; set; }
         public string Telefone { get; set; }
         public string email { get; set; }
-        public IEnumerable <RedeSocial> RedeSocials  { get; set; }
+        public IEnumerable <RedeSocial> RedesSociais  { get; set; }
         public IEnumerable<PalestrantesEvento> PalestrantesEventos { get; set; }
 
         
