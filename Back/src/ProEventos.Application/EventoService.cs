@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ProEventos.Application.Contratos
 {
-    public interface IEventosService
+    public class EventoService : IEventoService
     {
         
     }
