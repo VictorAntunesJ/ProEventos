@@ -4,6 +4,7 @@ using ProEventos.Application.Contratos;
 using ProEventos.Domain;
 using ProEventos.Persistence.Contratos;
 
+
 namespace ProEventos.Application
 {
     public class EventoService : IEventoService
@@ -132,79 +133,21 @@ namespace ProEventos.Application
             }
         }
 
-        /// <summary>
-        /// Obtém todos os eventos de forma assíncrona.
-        /// </summary>
-        /// <param name="includePalestrantes">Um valor booleano que indica se os palestrantes associados aos eventos devem ser incluídos na consulta.</param>
-        /// <returns>Um array de objetos <see cref="Evento"/> contendo todos os eventos. Se nenhum evento for encontrado, retorna null.</returns>
-        /// <exception cref="Exception">Lança uma exceção se ocorrer um erro durante a recuperação dos eventos.</exception>
-        public async Task<Evento[]> GetAllEventosAsync(bool includePalestrantes = false)
+
+        public Task<Evento[]> GetAllEventosAsync(bool includePalestrantes = false)
         {
-            try
-            {
-                var eventos = await _eventoPersist.GetAllEventosAsync(includePalestrantes);
-                if (eventos == null) return null;
-                return eventos;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+            throw new NotImplementedException();
         }
 
-
-
-
-
-
-
-
-        /// <summary>
-        /// Obtém todos os eventos que correspondem ao tema especificado de forma assíncrona.
-        /// </summary>
-        /// <param name="tema">O tema pelo qual os eventos devem ser filtrados.</param>
-        /// <param name="includePalestrantes">Um valor booleano que indica se os palestrantes associados aos eventos devem ser incluídos na consulta.</param>
-        /// <returns>Um array de objetos <see cref="Evento"/> contendo os eventos que correspondem ao tema especificado. Se nenhum evento for encontrado, retorna null.</returns>
-        /// <exception cref="Exception">Lança uma exceção se ocorrer um erro durante a recuperação dos eventos.</exception>
-        public async Task<Evento[]> GetAllEventosByTemaAsync(string tema, bool includePalestrantes = false)
+        public Task<Evento[]> GetAllEventosByTemaAsync(string tema, bool includePalestrantes = false)
         {
-            try
-            {
-                var eventos = await _eventoPersist.GetAllEventosByTemaAsync(tema, includePalestrantes);
-                if (eventos == null) return null;
-                return eventos;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+            throw new NotImplementedException();
         }
 
-
-
-
-
-
-
-        /// <summary>
-        /// Obtém um evento específico pelo seu ID de forma assíncrona.
-        /// </summary>
-        /// <param name="eventoId">O ID do evento a ser recuperado.</param>
-        /// <param name="includePalestrantes">Um valor booleano que indica se os palestrantes associados ao evento devem ser incluídos na consulta.</param>
-        /// <returns>Um objeto <see cref="Evento"/> representando o evento correspondente ao ID especificado. Se o evento não for encontrado, retorna null.</returns>
-        /// <exception cref="Exception">Lança uma exceção se ocorrer um erro durante a recuperação do evento.</exception>
-        public async Task<Evento> GetEventoByIdAsync(int eventoId, bool includePalestrantes = false)
+        public Task<Evento> GetEventoByIdAsync(int EventoId, bool includePalestrantes = false)
         {
-            try
-            {
-                var eventos = await _eventoPersist.GetEventoByIdAsync(eventoId, includePalestrantes);
-                if (eventos == null) return null;
-                return eventos;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+            throw new NotImplementedException();
         }
+
     }
 }
