@@ -1,0 +1,7 @@
+C:\Projetos\PROEVENTOS\Back\src\ProEventos.API\obj\Debug\net5.0\ProEventos.API.csprojAssemblyReference.cache
+C:\Projetos\PROEVENTOS\Back\src\ProEventos.API\obj\Debug\net5.0\ProEventos.API.GeneratedMSBuildEditorConfig.editorconfig
+C:\Projetos\PROEVENTOS\Back\src\ProEventos.API\obj\Debug\net5.0\ProEventos.API.AssemblyInfoInputs.cache
+C:\Projetos\PROEVENTOS\Back\src\ProEventos.API\obj\Debug\net5.0\ProEventos.API.AssemblyInfo.cs
+C:\Projetos\PROEVENTOS\Back\src\ProEventos.API\obj\Debug\net5.0\ProEventos.API.csproj.CoreCompileInputs.cache
+C:\Projetos\PROEVENTOS\Back\src\ProEventos.API\obj\Debug\net5.0\ProEventos.API.MvcApplicationPartsAssemblyInfo.cs
+C:\Projetos\PROEVENTOS\Back\src\ProEventos.API\obj\Debug\net5.0\ProEventos.API.MvcApplicationPartsAssemblyInfo.cache
