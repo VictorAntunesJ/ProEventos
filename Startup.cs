@@ -1,3 +1,6 @@
+using System;
+using System.IO;
+using System.Reflection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -18,21 +21,42 @@ namespace ProEventos.API
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        // Adiciona serviços ao contêiner
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ProEventosContext>(
-                context => context.UseSqlite(Configuration.GetConnectionString("Default"))
+            services.AddDbContext<ProEventosContext>(context =>
+                context.UseSqlite(Configuration.GetConnectionString("Default"))
             );
             services.AddControllers();
             services.AddCors();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "ProEventos.API", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "SistemaCursoDistancia.Api",
+                    Version = "v1",
+                    Description = "API desenvolvida para o site do sistema curso a distancia.",
+                    TermsOfService = new Uri("https://meusite.com"),
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Victor Sérgio",
+                        Url = new Uri("https://meusite.com")
+                    },
+                    License = new OpenApiLicense
+                    {
+                        Name = "Curso a distancia ApTech",
+                        Url = new Uri("https://meusite.com")
+                    }
+                });
+
+                var xmlArquivo = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlArquivo));
+
+                
             });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        // Configura o pipeline de requisição HTTP
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -43,15 +67,13 @@ namespace ProEventos.API
             }
 
             app.UseHttpsRedirection();
-
             app.UseRouting();
-
             app.UseAuthorization();
 
             app.UseCors(x => x.AllowAnyHeader()
                               .AllowAnyMethod()
                               .AllowAnyOrigin());
- 
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

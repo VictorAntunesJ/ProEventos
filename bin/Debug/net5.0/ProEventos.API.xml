@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ProEventos.API</name>
+    </assembly>
+    <members>
+        <member name="T:ProEventos.API.Controllers.EventosController">
+            <summary>
+            Controller para gerenciar operações relacionadas a eventos.
+            </summary>
+        </member>
+        <member name="M:ProEventos.API.Controllers.EventosController.#ctor(ProEventos.Application.Contratos.IEventoService)">
+            <summary>
+            Inicializa uma nova instância de <see cref="T:ProEventos.API.Controllers.EventosController"/> com o serviço de eventos especificado.
+            </summary>
+            <param name="eventoService">Instância de <see cref="T:ProEventos.Application.Contratos.IEventoService"/> utilizada para manipular os dados dos eventos.</param>
+        </member>
+        <member name="M:ProEventos.API.Controllers.EventosController.Get">
+            <summary>
+            Obtém todos os eventos.
+            </summary>
+            <returns>Retorna a lista de eventos ou uma mensagem de erro, caso nenhum evento seja encontrado.</returns>
+        </member>
+        <member name="M:ProEventos.API.Controllers.EventosController.GetById(System.Int32)">
+            <summary>
+            Obtém um evento pelo seu identificador único.
+            </summary>
+            <param name="id">Identificador único do evento.</param>
+            <returns>Retorna o evento correspondente ao ID ou uma mensagem de erro, caso não seja encontrado.</returns>
+        </member>
+        <member name="M:ProEventos.API.Controllers.EventosController.GetByTema(System.String)">
+            <summary>
+            Obtém eventos com base no tema especificado.
+            </summary>
+            <param name="tema">Tema do evento.</param>
+            <returns>Retorna a lista de eventos correspondentes ao tema ou uma mensagem de erro, caso nenhum evento seja encontrado.</returns>
+        </member>
+        <member name="M:ProEventos.API.Controllers.EventosController.Post(ProEventos.Domain.Evento)">
+            <summary>
+            Adiciona um novo evento.
+            </summary>
+            <param name="model">Dados do evento a ser adicionado.</param>
+            <returns>Retorna o evento criado ou uma mensagem de erro caso ocorra algum problema.</returns>
+        </member>
+        <member name="M:ProEventos.API.Controllers.EventosController.Put(System.Int32,ProEventos.Domain.Evento)">
+            <summary>
+            Atualiza um evento existente.
+            </summary>
+            <param name="id">Identificador único do evento a ser atualizado.</param>
+            <param name="model">Dados atualizados do evento.</param>
+            <returns>Retorna o evento atualizado ou uma mensagem de erro caso ocorra algum problema.</returns>
+        </member>
+        <member name="M:ProEventos.API.Controllers.EventosController.Delete(System.Int32)">
+            <summary>
+            Deleta um evento pelo seu identificador único.
+            </summary>
+            <param name="id">Identificador único do evento a ser deletado.</param>
+            <returns>Retorna uma mensagem de sucesso caso o evento seja deletado ou uma mensagem de erro caso não seja possível deletá-lo.</returns>
+        </member>
+    </members>
+</doc>

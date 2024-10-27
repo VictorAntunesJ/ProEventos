@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "3JS2cJV+bXh79ZEVULnhokg9EUM2MxcbgYEsVGl/An8QeB8OtP4cZRgNIhqB1o+z+u11s7TBlxhK4tmoPui+5A==",
+  "dgSpecHash": "KHXtUOYV9ncMj283rtdMJvgrh/DAdLpLDCO43Iibu78AVi4ueciQzjkA2ZHwV9DJsdF5fGGJrL6f42pjY71IAw==",
   "success": true,
   "projectFilePath": "C:\\Projetos\\PROEVENTOS\\Back\\src\\ProEventos.API\\ProEventos.API.csproj",
   "expectedPackageFiles": [
@@ -39,7 +39,8 @@
     "C:\\Users\\victo\\.nuget\\packages\\system.collections.immutable\\5.0.0\\system.collections.immutable.5.0.0.nupkg.sha512",
     "C:\\Users\\victo\\.nuget\\packages\\system.componentmodel.annotations\\5.0.0\\system.componentmodel.annotations.5.0.0.nupkg.sha512",
     "C:\\Users\\victo\\.nuget\\packages\\system.diagnostics.diagnosticsource\\5.0.1\\system.diagnostics.diagnosticsource.5.0.1.nupkg.sha512",
-    "C:\\Users\\victo\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512"
+    "C:\\Users\\victo\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512",
+    "C:\\Users\\victo\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.17\\microsoft.netcore.app.host.win-x64.5.0.17.nupkg.sha512"
   ],
   "logs": []
 }
