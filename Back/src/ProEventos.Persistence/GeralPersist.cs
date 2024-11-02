@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using ProEventos.Persistence.Context;
+using ProEventos.Persistence.Contextos;
 using ProEventos.Persistence.Contratos;
 
 namespace ProEventos.Persistence
@@ -7,30 +7,34 @@ namespace ProEventos.Persistence
     public class GeralPersist : IGeralPersist
     {
         private readonly ProEventosContext _context;
-        public GeralPersist (ProEventosContext context)
+        public GeralPersist(ProEventosContext context)
         {
-            _context = context;   
-        }
+            _context = context;
 
+        }
         public void Add<T>(T entity) where T : class
         {
-            _context.Add(entity);
+            _context.AddAsync(entity);
         }
+
         public void Update<T>(T entity) where T : class
         {
             _context.Update(entity);
         }
+
         public void Delete<T>(T entity) where T : class
         {
             _context.Remove(entity);
         }
-        public void DeleteRanger<T>(T[] entityArray) where T : class
+
+        public void DeleteRange<T>(T[] entityArray) where T : class
         {
-            _context.AddRange(entityArray);
+            _context.RemoveRange(entityArray);
         }
-         public async Task<bool> SaveChangesAsync()
+
+        public async Task<bool> SaveChangesAsync()
         {
-            return(await _context.SaveChangesAsync())> 0;
-        }       
-    }       
+            return (await _context.SaveChangesAsync()) > 0;
+        }
+    }
 }

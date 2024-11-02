@@ -1,7 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ProEventos.Domain
 {
@@ -12,11 +9,8 @@ namespace ProEventos.Domain
         public string MiniCurriculo { get; set; }
         public string ImagemURL { get; set; }
         public string Telefone { get; set; }
-        public string email { get; set; }
-        public IEnumerable <RedeSocial> RedesSociais  { get; set; }
-        public IEnumerable<PalestrantesEvento> PalestrantesEventos { get; set; }
-
-        
-        
+        public string Email { get; set; }
+        public IEnumerable<RedeSocial> RedesSociais { get; set; }
+        public IEnumerable<PalestranteEvento> PalestrantesEventos { get; set; }
     }
 }

@@ -1,6 +1,3 @@
-using System;
-using System.IO;
-using System.Reflection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -8,7 +5,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using ProEventos.Persistence.Context;
+using ProEventos.Application;
+using ProEventos.Application.Contratos;
+using ProEventos.Persistence;
+using ProEventos.Persistence.Contextos;
+using ProEventos.Persistence.Contratos;
 
 namespace ProEventos.API
 {
@@ -21,42 +22,29 @@ namespace ProEventos.API
 
         public IConfiguration Configuration { get; }
 
-        // Adiciona serviços ao contêiner
+        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ProEventosContext>(context =>
-                context.UseSqlite(Configuration.GetConnectionString("Default"))
+            services.AddDbContext<ProEventosContext>(
+                context => context.UseSqlite(Configuration.GetConnectionString("Default"))
             );
-            services.AddControllers();
+            services.AddControllers()
+                    .AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = 
+                        Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                    );
+
+            services.AddScoped<IEventoService, EventoService>();
+            services.AddScoped<IGeralPersist, GeralPersist>();
+            services.AddScoped<IEventoPersist, EventoPersist>();
+
             services.AddCors();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo
-                {
-                    Title = "SistemaCursoDistancia.Api",
-                    Version = "v1",
-                    Description = "API desenvolvida para o site do sistema curso a distancia.",
-                    TermsOfService = new Uri("https://meusite.com"),
-                    Contact = new OpenApiContact
-                    {
-                        Name = "Victor Sérgio",
-                        Url = new Uri("https://meusite.com")
-                    },
-                    License = new OpenApiLicense
-                    {
-                        Name = "Curso a distancia ApTech",
-                        Url = new Uri("https://meusite.com")
-                    }
-                });
-
-                var xmlArquivo = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlArquivo));
-
-                
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "ProEventos.API", Version = "v1" });
             });
         }
 
-        // Configura o pipeline de requisição HTTP
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -67,7 +55,9 @@ namespace ProEventos.API
             }
 
             app.UseHttpsRedirection();
+
             app.UseRouting();
+
             app.UseAuthorization();
 
             app.UseCors(x => x.AllowAnyHeader()

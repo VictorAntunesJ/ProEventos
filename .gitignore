@@ -534,16 +534,20 @@ package-lock.json
 PROEVENTOS.generated.sln
 .vscode
 .config
-
-
-
-package-lock.json
-
-
-PROEVENTOS.generated.sln
-
-.vscode/
-
-
+.gitignore
 .config/
 
+package-lock.json
+PROEVENTOS.generated.sln
+.vscode/
+* PROEVENTOS.generated.sln
+*.gitignore
+*ProEventos.API.csproj
+*ProEventos.db
+*appsettings.Development.json
+*appsettings.json
+*package-lock.json
+*obj
+*bin/Debug/net5.0
+*Readme.md
+README.md

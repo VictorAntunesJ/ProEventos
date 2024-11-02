@@ -1,43 +1,37 @@
-﻿﻿using System;
+﻿﻿﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using ProEventos.Persistence;
 using ProEventos.Domain;
+using ProEventos.Persistence.Contextos;
 using ProEventos.Application.Contratos;
 using Microsoft.AspNetCore.Http;
 
 namespace ProEventos.API.Controllers
 {
-    /// <summary>
-    /// Controller para gerenciar operações relacionadas a eventos.
-    /// </summary>
     [ApiController]
     [Route("api/[controller]")]
     public class EventosController : ControllerBase
     {
         private readonly IEventoService _eventoService;
 
-        /// <summary>
-        /// Inicializa uma nova instância de <see cref="EventosController"/> com o serviço de eventos especificado.
-        /// </summary>
-        /// <param name="eventoService">Instância de <see cref="IEventoService"/> utilizada para manipular os dados dos eventos.</param>
         public EventosController(IEventoService eventoService)
         {
             _eventoService = eventoService;
         }
 
-        /// <summary>
-        /// Obtém todos os eventos.
-        /// </summary>
-        /// <returns>Retorna a lista de eventos ou uma mensagem de erro, caso nenhum evento seja encontrado.</returns>
         [HttpGet]
         public async Task<IActionResult> Get()
         {
             try
             {
-                var evento = await _eventoService.GetAllEventosAsync(true);
-                if (evento == null) return NotFound("Nenhum evento encontrado.");
+                var eventos = await _eventoService.GetAllEventosAsync(true);
+                if (eventos == null) return NotFound("Nenhum evento encontrado.");
 
-                return Ok(evento);
+                return Ok(eventos);
             }
             catch (Exception ex)
             {
@@ -46,11 +40,6 @@ namespace ProEventos.API.Controllers
             }
         }
 
-        /// <summary>
-        /// Obtém um evento pelo seu identificador único.
-        /// </summary>
-        /// <param name="id">Identificador único do evento.</param>
-        /// <returns>Retorna o evento correspondente ao ID ou uma mensagem de erro, caso não seja encontrado.</returns>
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
@@ -68,12 +57,7 @@ namespace ProEventos.API.Controllers
             }
         }
 
-        /// <summary>
-        /// Obtém eventos com base no tema especificado.
-        /// </summary>
-        /// <param name="tema">Tema do evento.</param>
-        /// <returns>Retorna a lista de eventos correspondentes ao tema ou uma mensagem de erro, caso nenhum evento seja encontrado.</returns>
-        [HttpGet("tema: /{tema}")]
+        [HttpGet("{tema}/tema")]
         public async Task<IActionResult> GetByTema(string tema)
         {
             try
@@ -86,21 +70,16 @@ namespace ProEventos.API.Controllers
             catch (Exception ex)
             {
                 return this.StatusCode(StatusCodes.Status500InternalServerError,
-                    $"Erro ao tentar recuperar temas. Erro: {ex.Message}");
+                    $"Erro ao tentar recuperar eventos. Erro: {ex.Message}");
             }
         }
 
-        /// <summary>
-        /// Adiciona um novo evento.
-        /// </summary>
-        /// <param name="model">Dados do evento a ser adicionado.</param>
-        /// <returns>Retorna o evento criado ou uma mensagem de erro caso ocorra algum problema.</returns>
         [HttpPost]
         public async Task<IActionResult> Post(Evento model)
         {
             try
             {
-                var evento = await _eventoService.AddEvento(model);
+                var evento = await _eventoService.AddEventos(model);
                 if (evento == null) return BadRequest("Erro ao tentar adicionar evento.");
 
                 return Ok(evento);
@@ -108,22 +87,16 @@ namespace ProEventos.API.Controllers
             catch (Exception ex)
             {
                 return this.StatusCode(StatusCodes.Status500InternalServerError,
-                    $"Erro ao tentar adicionar temas. Erro: {ex.Message}");
+                    $"Erro ao tentar adicionar eventos. Erro: {ex.Message}");
             }
         }
 
-        /// <summary>
-        /// Atualiza um evento existente.
-        /// </summary>
-        /// <param name="id">Identificador único do evento a ser atualizado.</param>
-        /// <param name="model">Dados atualizados do evento.</param>
-        /// <returns>Retorna o evento atualizado ou uma mensagem de erro caso ocorra algum problema.</returns>
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, Evento model)
         {
             try
             {
-                var evento = await _eventoService.UpDateEvento(id, model);
+                var evento = await _eventoService.UpdateEvento(id, model);
                 if (evento == null) return BadRequest("Erro ao tentar adicionar evento.");
 
                 return Ok(evento);
@@ -131,30 +104,24 @@ namespace ProEventos.API.Controllers
             catch (Exception ex)
             {
                 return this.StatusCode(StatusCodes.Status500InternalServerError,
-                    $"Erro ao tentar atualizar temas. Erro: {ex.Message}");
+                    $"Erro ao tentar atualizar eventos. Erro: {ex.Message}");
             }
         }
 
-        /// <summary>
-        /// Deleta um evento pelo seu identificador único.
-        /// </summary>
-        /// <param name="id">Identificador único do evento a ser deletado.</param>
-        /// <returns>Retorna uma mensagem de sucesso caso o evento seja deletado ou uma mensagem de erro caso não seja possível deletá-lo.</returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             try
             {
-                return (await _eventoService.DeleteEvento(id)) ?
-                        Ok("Deletado") :
-                        BadRequest("Evento não Deletado.");
+                return await _eventoService.DeleteEvento(id) ? 
+                       Ok("Deletado") : 
+                       BadRequest("Evento não deletado");
             }
             catch (Exception ex)
             {
                 return this.StatusCode(StatusCodes.Status500InternalServerError,
-                    $"Erro ao tentar deletar temas. Erro: {ex.Message}");
+                    $"Erro ao tentar deletar eventos. Erro: {ex.Message}");
             }
         }
     }
-
 }
