@@ -476,5 +476,17 @@ Esse comando cria as interfaces `Evento`, `Lote`, `Palestrante`, `PalestranteEve
 3. Cópia dos Campos do Back-end
 Acessei o projeto de back-end `(ProEventos.API)` e copiei os campos das entidades `Evento`, `Lote`, `Palestrante`, `PalestranteEventos` e `RedeSocial` para suas respectivas interfaces no front-end.
 
+ - ### Evento Service
+
+1. **Criação da Pasta Services**
+Dentro do projeto `ProEventos.App`, criei uma pasta chamada `services` para organizar os serviços que serão usados para consumir a API e manipular dados no front-end.
+
+2. **Geração do Evento Service**
+Dentro da pasta `services`, gerei o serviço usando o Angular CLI:
+
+```sh
+ng g s services
+```
+
 
 
