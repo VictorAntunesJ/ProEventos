@@ -474,11 +474,13 @@ ng g i Models/RedeSocial
 Esse comando cria as interfaces `Evento`, `Lote`, `Palestrante`, `PalestranteEventos` e `RedeSocial` no diretório `Models`.
 
 3. Cópia dos Campos do Back-end
+   
 Acessei o projeto de back-end `(ProEventos.API)` e copiei os campos das entidades `Evento`, `Lote`, `Palestrante`, `PalestranteEventos` e `RedeSocial` para suas respectivas interfaces no front-end.
 
  - ### Evento Service
 
 1. **Criação da Pasta Services**
+
 Dentro do projeto `ProEventos.App`, criei uma pasta chamada `services` para organizar os serviços que serão usados para consumir a API e manipular dados no front-end.
 
 2. **Geração do Evento Service**
@@ -487,6 +489,76 @@ Dentro da pasta `services`, gerei o serviço usando o Angular CLI:
 ```sh
 ng g s services
 ```
+
+ - ### Injeçao de dependencia
+
+ #### No Angular, há três maneiras principais de injetar um serviço como o EventoService:####
+
+ 1. Injeção Global (padrão do Angular CLI).
+
+Quando o EventoService é gerado com o Angular CLI, ele inclui automaticamente a anotação `@Injectable` com `{ providedIn: 'root' }`. Isso torna o serviço disponível globalmente em toda a aplicação, ou seja, ele pode ser injetado em qualquer componente ou serviço sem configurações adicionais.
+
+```typescript
+Copiar código
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class EventoService {
+  baseURL = 'https://localhost:5001/api/eventos';
+
+  constructor(private http: HttpClient) { }
+
+  getEventos() {
+    return this.http.get(this.baseURL);
+  }
+}
+```
+
+ 2. Injeção Local (no próprio componente).
+
+Outra maneira de injetar o serviço é configurá-lo diretamente no componente onde ele será usado. Isso é feito adicionando o EventoService ao array providers no decorador `@Component` do componente específico.
+
+```typescript
+Copiar código
+import { Component } from '@angular/core';
+import { EventoService } from '../services/evento.service';
+
+@Component({
+  selector: 'app-eventos',
+  templateUrl: './eventos.component.html',
+  styleUrls: ['./eventos.component.scss'],
+  providers: [EventoService] // Injeção local
+})
+export class EventosComponent {
+  constructor(private eventoService: EventoService) {}
+}
+```
+*Usar o serviço como provider diretamente no componente cria uma instância separada do serviço para cada componente, o que é útil em casos onde o isolamento de dados é necessário.*
+
+3. Injeção no Módulo (configuração em app.module.ts). - *Esse método é mais comum:*
+
+A terceira maneira é declarar o EventoService como um provedor no módulo principal (AppModule) no arquivo app.module.ts. Esse método é mais comum em serviços não declarados globalmente e permite que o serviço seja compartilhado em todos os componentes do módulo.
+
+```typescript
+Copiar código
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+import { AppComponent } from './app.component';
+import { EventoService } from './services/evento.service';
+
+@NgModule({
+  declarations: [AppComponent],
+  imports: [BrowserModule, HttpClientModule],
+  providers: [EventoService], // Declaração no módulo
+  bootstrap: [AppComponent]
+})
+export class AppModule {}
+```
+
 
 
 
