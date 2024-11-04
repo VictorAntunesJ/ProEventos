@@ -454,5 +454,27 @@ public async Task<IActionResult> Get()
     // Implementação do método
 }
 ```
-Angular - Organizar,Rotas, Alertas e +.
+## Angular - Organizar,Rotas, Alertas e +.
+
+ - ### Configuração de Interfaces para Modelos no Front-end 1 e 2
+
+1. Criação da Pasta Models
+No projeto `ProEventos.App`, criei uma pasta chamada `Models` para organizar as interfaces que representam os modelos de dados.
+
+2. Geração das Interfaces
+Dentro da pasta `Models`, gerei as interfaces necessárias usando o Angular CLI:
+
+```sh
+ng g i Models/Evento
+ng g i Models/Lote
+ng g i Models/Palestrante
+ng g i Models/Palestrante
+ng g i Models/RedeSocial
+```
+Esse comando cria as interfaces `Evento`, `Lote`, `Palestrante`, `PalestranteEventos` e `RedeSocial` no diretório `Models`.
+
+3. Cópia dos Campos do Back-end
+Acessei o projeto de back-end `(ProEventos.API)` e copiei os campos das entidades `Evento`, `Lote`, `Palestrante`, `PalestranteEventos` e `RedeSocial` para suas respectivas interfaces no front-end.
+
+
 
