@@ -558,6 +558,7 @@ import { EventoService } from './services/evento.service';
 })
 export class AppModule {}
 ```
+ - ## Tipagem dos Métodos - *Adicionando tipagem aos métodos para melhorar a manutenção do código*
 
 
 
