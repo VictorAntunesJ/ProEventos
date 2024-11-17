@@ -1,10 +1,3 @@
-<head>
-  <link
-    rel="stylesheet"
-    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-  />
-</head>
-
 <h2>Eventos</h2>
 <hr />
 
@@ -27,8 +20,8 @@
         <button
           type="button"
           class="btn btn-outline-light btn-sm"
-          (click)="alterarImagem()"
-        >
+          (click)="alterarImagem()">
+          <i class="{{ !exibirImagem ? 'fa fa-eye' : 'fa fa-eye-slash' }}"></i>
           {{ !exibirImagem ? "exibir" : "ocultar" }}
         </button>
       </th>
@@ -54,42 +47,44 @@
           [style.margin.px]="margemImagem"
         />
 
-        <style>
-          .btn-custom {
-            padding: 0.25rem 0.5rem;
-            font-size: 0.75rem; /* Tamanho da fonte menor */
-            line-height: 1;
-          }
-        </style>
+        <div class="d-flex">
+          <button
+            type="button"
+            class="btn btn bg-success text-white btn-sm mr-1 btn-custom"
+          >
+            Aplicaçâo
+          </button>
+          <button
+            type="button"
+            class="btn btn bg-primary text-white btn-sm mr-1 btn-custom"
 
-        <button
-          type="button"
-          class="btn btn bg-success text-white btn-sm mr-1 btn-custom"
-        >
-          Aplicaçâo
-        </button>
-        <button
-          type="button"
-          class="btn btn bg-primary text-white btn-sm mr-1 btn-custom"
-        >
-          Similar
-        </button>
-        <button
-          type="button"
-          class="btn btn bg-secondary text-white btn-sm btn-custom"
-        >
-          Informaçoes
-        </button>
+          >
+            Similar
+          </button>
+          <button
+            type="button"
+            class="btn btn bg-secondary text-white btn-sm btn-custom"
+          >
+            Informaçoes
+          </button>
+        </div>
       </td>
-      <td>{{ evento.eventoId }}</td>
+      <td>{{ evento.id }}</td>
       <td>{{ evento.tema }}</td>
       <td>{{ evento.local }}</td>
       <td>{{ evento.dataEvento }}</td>
       <td>{{ evento.qtdPessoas }}</td>
-      <td>{{ evento.lote }}</td>
+      <td>{{ evento.lotes[0].nome }}</td>
       <td>
-        <button type="button" class="btn-primary btn-sm mr-2">Editar</button>
-        <button type="button" class="btn btn-danger btn-sm">Excluir</button>
+        <button type="button" class="btn-primary btn-sm mr-2">
+          <i class="fa fa-edit"></i>
+          Editar
+        </button>
+
+        <button type="button" class="btn btn-danger btn-sm">
+          <i class="fa fa-trash "></i>
+          Excluir
+        </button>
       </td>
     </tr>
   </tbody>
