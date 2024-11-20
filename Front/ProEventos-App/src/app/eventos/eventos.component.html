@@ -77,12 +77,12 @@
       <td>{{ evento.lotes[0].nome }}</td>
       <td>
         <div class="btn-group">
-          <button type="button" class="btn-primary btn-sm" tootip="Editar" >
+          <button type="button" class="btn-primary btn-sm" tootip="Editar" (click)="openModal(Editar)">
           <i class="fa fa-edit"></i>
           <!-- Editar -->
         </button>
 
-        <button type="button" class="btn btn-danger btn-sm" tootip="Excluir" >
+        <button type="button" class="btn btn-danger btn-sm" tootip="Excluir" (click)="openModal(Deletar)">
           <i class="fa fa-trash "></i>
           <!-- Excluir -->
         </button>
@@ -98,5 +98,28 @@
     </tr>
   </tfoot>
 </table>
+<!-- Funcionamento:
+ Modal de Decisão:
+  - Mensagem: Exibe a pergunta "Do you want to confirm?" no corpo do modal.
+  - Botões:
+    1. Botão "Yes" (Sim): Invoca a função `confirm()` para confirmar a ação.
+    2. Botão "No" (Não): Invoca a função `decline()` para cancelar a ação. -->
+
+<ng-template #Deletar>
+  <div class="modal-body text-center">
+    <p>Tem certeza que quer deletar esse Evento?</p>
+    <button type="button" class="btn btn-default" (click)="confirm()" >Sim</button>
+    <button type="button" class="btn btn-primary" (click)="decline()" >Não</button>
+  </div>
+</ng-template>
+
+
+<ng-template #Editar>
+  <div class="modal-body text-center">
+    <p>tem certeza que deseja editar esse Evento?</p>
+    <button type="button" class="btn btn-default" (click)="confirm()" >Sim</button>
+    <button type="button" class="btn btn-primary" (click)="decline()" >Não</button>
+  </div>
+</ng-template>
 
 <!-- {{eventos | json}} -->
