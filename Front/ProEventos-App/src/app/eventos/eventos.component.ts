@@ -3,6 +3,8 @@ import { EventoService } from '../services/evento.service';
 import { Evento } from '../models/Evento';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
+import { NgxSpinnerService } from 'ngx-spinner';
+
 
 @Component({
   selector: 'app-eventos',
@@ -11,6 +13,12 @@ import { ToastrService } from 'ngx-toastr';
   // providers: [EventoService]
 })
 export class EventosComponent implements OnInit {
+hideSpinner() {
+throw new Error('Method not implemented.');
+}
+showSpinner() {
+throw new Error('Method not implemented.');
+}
   modalRef?: BsModalRef;
   public eventos: Evento[] = [];
   public eventosFiltrados: Evento[] = [];
@@ -44,10 +52,12 @@ export class EventosComponent implements OnInit {
   constructor(
     private eventoService: EventoService,
     private modalService: BsModalService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private spinner: NgxSpinnerService
   ) {}
 
   public ngOnInit(): void {
+    this.spinner.show();
     this.getEventos();
   }
 
@@ -56,14 +66,33 @@ export class EventosComponent implements OnInit {
   }
 
   public getEventos(): void {
-    this.eventoService.getEventos().subscribe(
-      (_eventos: Evento[]) => {
-        this.eventos = _eventos;
+    this.eventoService.getEventos().subscribe({
+      next: (eventos: Evento[]) => {
+        this.eventos = eventos;
         this.eventosFiltrados = this.eventos;
       },
 
-      (error) => console.log(error)
-    );
+      error: (error: any) => {
+        this.spinner.hide();
+    this.toastr.error('Erro au carregar os Eventos.', 'Error!');
+
+
+      },
+      complete: () => this.spinner.hide()
+
+      });
+    //   (_eventos: Evento[]) => {
+    //     this.eventos = _eventos;
+    //     this.eventosFiltrados = this.eventos;
+
+    //   },
+
+    //   (error) => console.log(error),
+    //   complete: () => this.spinner.hide();
+
+
+
+    // );
   }
 
   openModal(template: TemplateRef<any>) {
@@ -79,3 +108,7 @@ export class EventosComponent implements OnInit {
     this.modalRef?.hide();
   }
 }
+function complete(): void {
+  throw new Error('Function not implemented.');
+}
+
