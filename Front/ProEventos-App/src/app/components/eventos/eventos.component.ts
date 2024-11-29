@@ -1,10 +1,9 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
-import { EventoService } from '../services/evento.service';
-import { Evento } from '../models/Evento';
+import { EventoService } from '../../services/evento.service';
+import { Evento } from '../../models/Evento';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
-
 
 @Component({
   selector: 'app-eventos',
@@ -13,12 +12,12 @@ import { NgxSpinnerService } from 'ngx-spinner';
   // providers: [EventoService]
 })
 export class EventosComponent implements OnInit {
-hideSpinner() {
-throw new Error('Method not implemented.');
-}
-showSpinner() {
-throw new Error('Method not implemented.');
-}
+  hideSpinner() {
+    throw new Error('Method not implemented.');
+  }
+  showSpinner() {
+    throw new Error('Method not implemented.');
+  }
   modalRef?: BsModalRef;
   public eventos: Evento[] = [];
   public eventosFiltrados: Evento[] = [];
@@ -74,13 +73,10 @@ throw new Error('Method not implemented.');
 
       error: (error: any) => {
         this.spinner.hide();
-    this.toastr.error('Erro au carregar os Eventos.', 'Error!');
-
-
+        this.toastr.error('Erro au carregar os Eventos.', 'Error!');
       },
-      complete: () => this.spinner.hide()
-
-      });
+      complete: () => this.spinner.hide(),
+    });
     //   (_eventos: Evento[]) => {
     //     this.eventos = _eventos;
     //     this.eventosFiltrados = this.eventos;
@@ -89,8 +85,6 @@ throw new Error('Method not implemented.');
 
     //   (error) => console.log(error),
     //   complete: () => this.spinner.hide();
-
-
 
     // );
   }
@@ -111,4 +105,3 @@ throw new Error('Method not implemented.');
 function complete(): void {
   throw new Error('Function not implemented.');
 }
-
