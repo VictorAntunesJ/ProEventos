@@ -21,7 +21,7 @@ import { EventosComponent } from './components/eventos/eventos.component';
 import { PalestrantesComponent } from './components/palestrantes/palestrantes.component';
 import { ContatosComponent } from './components/contatos/contatos.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { NavComponent } from './nav/nav.component';
+import { NavComponent } from './Shared/nav/nav.component';
 
 import { EventoService } from './services/evento.service';
 
